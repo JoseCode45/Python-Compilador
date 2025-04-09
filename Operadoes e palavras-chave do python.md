@@ -30,20 +30,35 @@ Simbolo identificadores tipos de dados:
 []
 Simbolo identificador de inicio de bloco:
 :
+
 -Palavras 
 identificador de blocos:
+
 def
+
 elif
+
 else
+
 while
 Tipos de dados:
+
 float
+
 int
+
 bool
+
 Funçoes built in:
+
 float()
+
 filter()
+
 sum()
+
 Operadores booleanos:
+
 True 
+
 False
