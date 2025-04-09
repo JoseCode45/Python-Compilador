@@ -4,6 +4,7 @@ lexer grammar ExprLexer;
 EQ : '=' ;
 SEMI : ';' ;
 PLUS : '+' ;
+MINUS : '-' ;
 DEF : 'def' ;
 IF : 'if' ;
 ELSE : 'else' ; 
