@@ -9,8 +9,21 @@ program
 stat: ID EQ expr SEMI
     | ID PLUS  ID SEMI
     | if expr then stat else stat
-    | expr SEMI
+    | (expr | query | cond) SEMI "\n"
     ;
+
+query: BOOL  
+    | query BOOL query
+    | '(' query ')'
+    
+cond: IF
+    |ELSE
+    |ELIF
+    | IF expr ':' stat ELSE ':' stat
+    | IF expr ':' stat ELIF expr ':' stat 
+    | IF expr ':' stat ELIF expr ':' stat ELSE ':' stat
+    | IF expr ':' stat (ELIF expr ':' stat)+ 
+    | IF expr ':' stat (ELIF expr ':' stat)+ ELSE ':' stat
 
 
 
@@ -18,17 +31,16 @@ expr: ID
     | INT
     | FLOAT
     | COMPLEX
-    | BOOL 
     | expr (MUL | DIVIDE) expr
     | expr (PLUS | MINUS) expr
     | expr (GREATER | LESSER) expr
     | 'not' expr
     | expr and expr
     | expr 'or' expr
+    | expr query expr
     | '(' expr ')' 
     |func
     
         
 func : ID '(' expr (','expr)* ')' ;        
         
-    ;
