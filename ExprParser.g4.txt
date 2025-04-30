@@ -3,14 +3,32 @@ options { tokenVocab=ExprLexer; }
 
 program
     : stat+ EOF
+    | def EOF
     ;
 
-stat: ID '=' expr ';'
-    | ID '+' ID ';'
-    | expr ';'
+stat: ID EQ expr SEMI
+    | ID PLUS  ID SEMI
+    | if expr then stat else stat
+    | expr SEMI
     ;
+
 
 
 expr: ID
     | INT
+    | FLOAT
+    | COMPLEX
+    | BOOL 
+    | expr (MUL | DIVIDE) expr
+    | expr (PLUS | MINUS) expr
+    | expr (GREATER | LESSER) expr
+    | 'not' expr
+    | expr and expr
+    | expr 'or' expr
+    | '(' expr ')' 
+    |func
+    
+        
+func : ID '(' expr (','expr)* ')' ;        
+        
     ;
