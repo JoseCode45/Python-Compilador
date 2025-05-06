@@ -13,8 +13,10 @@ stat: ID EQ expr SEMI
     ;
 
 query: BOOL  
-    | query BOOL query
+    | query OP_BOOL query
+    | NOT query
     | '(' query ')'
+    | expr GS | WS expr
     
 cond: IF
     |ELSE
