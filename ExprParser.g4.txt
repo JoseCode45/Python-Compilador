@@ -17,6 +17,7 @@ query: BOOL
     | NOT query
     | '(' query ')'
     | expr (LESSER | GREATER | EQUAL ) expr
+    ;
     
 cond: IF
     |ELSE
