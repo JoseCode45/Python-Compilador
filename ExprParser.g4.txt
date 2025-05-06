@@ -16,7 +16,7 @@ query: BOOL
     | query OP_BOOL query
     | NOT query
     | '(' query ')'
-    | expr GS | WS expr
+    | expr (LESSER | GREATER | EQUAL ) expr
     
 cond: IF
     |ELSE
