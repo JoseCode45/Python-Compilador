@@ -6,8 +6,12 @@ program
     | def EOF
     ;
 
+code: (stat | cond | func | func_call)* EOF
+    ;
+
 stat: (expr | query | cond) "\n"
     ;
+
 
 query: BOOL  
     | query OP_BOOL query
@@ -31,7 +35,15 @@ expr: ID
     | expr (PLUS | MINUS) expr
     | '(' expr ')' 
     |func;
+    |func_call;
     
         
-func : ID '(' expr (','expr)* ')' ;        
-        
+func : DEF ID '(' params ')' ':' ;
+
+params: ( ID , ID* | ID |  'None');
+? : (expr,expr* | expr | 'None);
+
+
+func_call: ID '(' expr (','expr)* ')' ; 
+
+
