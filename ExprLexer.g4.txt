@@ -1,18 +1,24 @@
 // DELETE THIS CONTENT IF YOU PUT COMBINED GRAMMAR IN Parser TAB
 lexer grammar ExprLexer;
 
-OPBOOL: 'and' | 'or';
+OP_BOOL: 'and' | 'or';
 NOT: 'not';
 BL: '\n' ; 
-OTHER: 'or' ;
 EQ : '=' ;
-MUL : '*'
+MUL : '*' ;
 SEMI : ';' ;
 PLUS : '+' ;
 DOT : '.' ; 
 J : 'J' ; 
 MINUS : '-' ;
 DEF : 'def' ;
+RETURN : 'return' ;
+// definir tokens de ( ) : None etc
+B_PARATENSIS : '(' ;
+C_PARATENSIS : ')' ; 
+COLON : ':' ; 
+COMMA : ',' ; 
+NONE : 'None' ;
 IF : 'if' ;
 ELSE : 'else' ; 
 ELIF: ELSE '+' IF;
