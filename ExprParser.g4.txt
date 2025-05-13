@@ -3,13 +3,12 @@ options { tokenVocab=ExprLexer; }
 
 program
     : stat+ EOF
-    | def EOF
     ;
 
-code: (stat | cond | func | func_call)* EOF
+code: (stat | cond)* EOF
     ;
 
-stat: (expr | query | cond) "\n"
+stat: (expr | query | cond  | func | func_call) '\n'
     ;
 
 
@@ -17,13 +16,13 @@ query: BOOL
     | query OP_BOOL query
     | NOT query
     | '(' query ')'
-    | expr (LESSER | GREATER | EQUAL ) expr
+    | expr (LESSER | GREATER | EQ ) expr
     ;
     
 cond: IF
     |ELSE
     |ELIF
-    | IF query ':' stat (ELIF expr ':' stat)* (!ELSE) ':' stat
+    | IF query ':' stat (ELIF expr ':' stat)* (ELSE) ':' stat;
 
 
 
@@ -34,16 +33,15 @@ expr: ID
     | expr (MUL | DIVIDE) expr
     | expr (PLUS | MINUS) expr
     | '(' expr ')' 
-    |func;
+    |func
     |func_call;
     
         
-func : DEF ID '(' params ')' ':' ;
+func : DEF ID '(' params ')' ':'// BL RETURN expr BL? ;
 
-params: ( ID , ID* | ID |  'None');
-? : (expr,expr* | expr | 'None);
+params: ( ID ',' ID* | ID |  'None')
+  | (expr','expr* | expr | 'None');
 
 
 func_call: ID '(' expr (','expr)* ')' ; 
-
 
