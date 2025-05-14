@@ -52,22 +52,3 @@ func_call: ID '(' expr (','expr)* ')' ;
 loop_while: WHILE ( expr* | query* )
 COLON
         stat* ;
-expr: ID
-    | INT
-    | FLOAT
-    | COMPLEX
-    | expr (MUL | DIVIDE) expr
-    | expr (PLUS | MINUS) expr
-    | '(' expr ')' 
-    |func
-    |func_call;
-    
-        
-func : DEF ID '(' params ')' ':'// BL RETURN expr BL? ;
-
-params: ( ID ',' ID* | ID |  'None')
-  | (expr','expr* | expr | 'None');
-
-
-func_call: ID '(' expr (','expr)* ')' ; 
-
