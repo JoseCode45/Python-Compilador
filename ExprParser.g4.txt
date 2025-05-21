@@ -35,11 +35,10 @@ expr: ID
     | expr (PLUS | MINUS) expr
     | expr EQ expr
     | '(' expr ')' 
-    |func
     |func_call;
     
         
-func : DEF ID '(' params ')' ':'// BL 
+func : DEF ID '(' params ')' ':'  BL 
 RETURN expr BL? ;
 
 params: ( ID ',' ID* | ID |  'None')
