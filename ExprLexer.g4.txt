@@ -35,6 +35,6 @@ INT : [0-9]+  ;
 FLOAT : INT'.'INT | INT '.' | '.' INT ;
 RANGE : 'range' ;
 FOR : 'for' ;
-IN : 'in' ;
+IN : 'in' ; 
 ID: [a-zA-Z_][a-zA-Z_0-9]* ;
 WS: [ \t\r\f]+ -> skip ;
